@@ -62,7 +62,7 @@ public class ExportOperation: ConcurrentOperation
         // exportSession.timeRange must be valid so that the exportSession's estimatedOutputFileLength is non zero
         // We use estimatedOutputFileLength below to check that there is ample disk space to perform the export [AH] 10/15/2015
         
-        exportSession.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: exportSession.asset.duration)
+        exportSession.timeRange = CMTimeRangeMake(kCMTimeZero, exportSession.asset.duration)
 
         assert(CMTIMERANGE_IS_EMPTY(exportSession.timeRange) == false, "exportSession.timeRange is empty")
         assert(CMTIMERANGE_IS_INDEFINITE(exportSession.timeRange) == false, "exportSession.timeRange is indefinite")
