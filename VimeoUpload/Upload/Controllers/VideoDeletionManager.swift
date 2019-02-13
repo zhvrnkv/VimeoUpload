@@ -31,7 +31,7 @@ import VimeoNetworking
 public class VideoDeletionManager: NSObject
 {
     private static let DeletionsArchiveKey = "deletions"
-    private static let DefaultRetryCount = 3
+    internal static let DefaultRetryCount = 3
     
     // MARK:
     
@@ -76,7 +76,7 @@ public class VideoDeletionManager: NSObject
     public init?(sessionManager: VimeoSessionManager,
                  archivePrefix: String? = nil,
                  documentsFolderURL: URL,
-                 retryCount: Int = VideoDeletionManager.DefaultRetryCount)
+                 retryCount: Int = 3)
     {
         guard let archiver = VideoDeletionManager.setupArchiver(name: VideoDeletionManager.DeletionsArchiveKey, archivePrefix: archivePrefix, documentsFolderURL: documentsFolderURL) else
         {
@@ -241,7 +241,7 @@ public class VideoDeletionManager: NSObject
         self.operationQueue.isSuspended = true
     }
 
-    func reachabilityDidChange(_ notification: Notification?)
+    @objc func reachabilityDidChange(_ notification: Notification?)
     {
         let currentlyReachable = AFNetworkReachabilityManager.shared().isReachable
         
