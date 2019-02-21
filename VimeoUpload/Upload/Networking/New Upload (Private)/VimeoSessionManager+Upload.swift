@@ -27,7 +27,7 @@
 import Foundation
 import VimeoNetworking
 
-extension VimeoSessionManager
+public extension VimeoSessionManager
 {
     func createVideoDataTask(url: URL, videoSettings: VideoSettings?, completionHandler: @escaping VideoCompletionHandler) throws -> URLSessionDataTask
     {
